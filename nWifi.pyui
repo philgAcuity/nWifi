@@ -1,0 +1,86 @@
+[
+  {
+    "selected" : false,
+    "frame" : "{{0, 0}, {344, 626}}",
+    "class" : "View",
+    "nodes" : [
+      {
+        "selected" : false,
+        "frame" : "{{80, 224}, {200, 150}}",
+        "class" : "Button",
+        "nodes" : [
+
+        ],
+        "attributes" : {
+          "uuid" : "10EB59FD-F957-4121-B24E-E36975A3D0C7",
+          "image_name" : "iob:ios7_lightbulb_outline_256",
+          "flex" : "B",
+          "corner_radius" : 0,
+          "frame" : "{{80, 104}, {80, 32}}",
+          "border_color" : "RGBA(1.000000,0.946429,0.625000,1.000000)",
+          "border_width" : 3,
+          "title" : "ButtonOn",
+          "action" : "SendNlightOn",
+          "class" : "Button",
+          "name" : "onButton",
+          "font_size" : 15
+        }
+      },
+      {
+        "selected" : false,
+        "frame" : "{{80, 375}, {200, 150}}",
+        "class" : "Button",
+        "nodes" : [
+
+        ],
+        "attributes" : {
+          "action" : "SendNlightOff",
+          "border_width" : 3,
+          "name" : "offButton",
+          "frame" : "{{80, 104}, {80, 32}}",
+          "title" : "ButtonOff",
+          "uuid" : "10EB59FD-F957-4121-B24E-E36975A3D0C7",
+          "class" : "Button",
+          "background_color" : "RGBA(0.166667,0.166667,1.000000,1.000000)",
+          "corner_radius" : 0,
+          "font_size" : 15,
+          "image_name" : "iob:lightbulb_256"
+        }
+      },
+      {
+        "selected" : true,
+        "frame" : "{{75, 0}, {185, 224}}",
+        "class" : "TableView",
+        "nodes" : [
+
+        ],
+        "attributes" : {
+          "uuid" : "04D33D53-0871-4BE9-BB56-11197D83499B",
+          "data_source_action" : "ChangeRooms",
+          "corner_radius" : 0,
+          "background_color" : "RGBA(1.0, 1.0, 1.0, 1.0)",
+          "frame" : "{{73, 181}, {200, 200}}",
+          "data_source_items" : "Bedroom\nKitchen Island\nKitchen Table\nFireplace\nGarage Outdoor",
+          "data_source_number_of_lines" : 1,
+          "border_width" : 0,
+          "data_source_move_enabled" : false,
+          "alpha" : 1,
+          "data_source_delete_enabled" : false,
+          "data_source_font_size" : 20,
+          "row_height" : 40,
+          "class" : "TableView",
+          "name" : "tableviewRooms",
+          "flex" : "WH"
+        }
+      }
+    ],
+    "attributes" : {
+      "flex" : "",
+      "enabled" : true,
+      "background_color" : "RGBA(1.000000,1.000000,1.000000,1.000000)",
+      "name" : "nWifi",
+      "tint_color" : "RGBA(0.000000,0.478000,1.000000,1.000000)",
+      "border_color" : "RGBA(0.000000,0.000000,0.000000,1.000000)"
+    }
+  }
+]
