@@ -7,19 +7,20 @@ UDP_IP = "10.0.1.255"
 UDP_PORT = 5556
 globalPacketID = 0
 channelSelection = 'Bedroom'
-#channelSelection = 'Kitchen Island'
-#channelSelection = 'Kitchen Table'
 
 channelDict = {	'Bedroom' : '115', 
-								'Kitchen Island' : '57', 'Kitchen Table' : '6',
-								'Fireplace' : '100',
-								'Garage Outdoor' : '28',
-								}
+		'Kitchen Island' : '57', 
+	       	'Kitchen Table' : '6',
+		'Fireplace' : '100',
+		'Garage Outdoor' : '28',
+	      }
+
 rooms = ['Bedroom', 
-					'Kitchen Island', 
-					'Kitchen Table',
-					'Fireplace',
-					'Garage Outdoor',]
+	'Kitchen Island', 
+	'Kitchen Table',
+	'Fireplace',
+	'Garage Outdoor',
+	]
 
 def SendNlightUdp(udp_ip, udp_port, message):
 	sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -37,10 +38,10 @@ def SendNlightOn(myInterface):
 	channel = '{:02X}'.format(int(channelDict[channelSelection])-1)
 	print channel
 	temp = BuildNlightPacket(dest='FFFFFFFC',
-														src='FFFFFFF2',
-														subj='00',
-														payload='010100'+channel,
-														packetID=True)
+				src='FFFFFFF2',
+				subj='00',
+				payload='010100'+channel,
+				packetID=True)
 	message = bytearray.fromhex(temp)
 	SendNlightUdp(UDP_IP, UDP_PORT, message)
 	
@@ -51,28 +52,28 @@ def SendNlightOff(myInterface):
 	channel = '{:02X}'.format(int(channelDict[channelSelection])-1)
 	print channel
 	temp = BuildNlightPacket(dest='FFFFFFFC',
-														src='FFFFFFF2',
-														subj='00',
-														payload='010000'+channel,
-														packetID=True)
+				src='FFFFFFF2',
+				subj='00',
+				payload='010000'+channel,
+				packetID=True)
 	message = bytearray.fromhex(temp)
 	SendNlightUdp(UDP_IP, UDP_PORT, message)
 	
 def BuildNlightPacket(dest='FFFFFFFC',
-											src='FFFFFFF2',
-											subj='00',
-											payload='00',
-											packetID=True):
+			src='FFFFFFF2',
+			subj='00',
+			payload='00',
+			packetID=True):
 	global globalPacketID
 	if packetID == True:
-		globalPacketID +=1
-		if globalPacketID > 255:
+		globalPacketID +=1			# increment global packet id with each use
+		if globalPacketID > 255:		# wrap around to keep it a single byte
 			globalPacketID = 0
 		payload += '{:02X}'.format(globalPacketID)
 	packet = 'A5' + dest + src + '{:02X}'.format(13 + len(payload)/2) + subj + payload
 	bytes = list(bytearray.fromhex(packet))
-	d0 = bytes[0::2]
-	d1 = bytes[1::2]
+	d0 = bytes[0::2]				# get even bytes
+	d1 = bytes[1::2]				# get odd bytes
 	checkH = 0
 	for b in d0:
 		checkH ^= b
@@ -91,10 +92,6 @@ def ChangeRooms(myInterface):
 	global channelSelection
 	channelSelection = rooms[myInterface.selected_row]
 	print channelSelection
-	
-		
-
-
 
 v = ui.load_view()
 v.present('sheet')
